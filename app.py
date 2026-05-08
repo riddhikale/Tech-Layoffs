@@ -46,3 +46,29 @@ month = st.slider(
     12,
     1
 )
+
+
+#create input df
+input_data = pd.DataFrame({
+    'Funds_Raised': [funds],
+    'year': [2024],
+    'month': [month],
+    'Percentage': [percentage],
+    'wave_month': [0]
+})
+
+# Prediction button
+if st.button("Predict Layoff Risk"):
+    
+    prediction = model.predict_proba(input_data)[0][1]
+    
+    st.subheader(f"Layoff Risk Score: {prediction:.2f}")
+
+    if prediction > 0.7:
+        st.error("🔴 High Risk of Large Layoff")
+    
+    elif prediction > 0.4:
+        st.warning("🟡 Medium Risk")
+    
+    else:
+        st.success("🟢 Low Risk")
