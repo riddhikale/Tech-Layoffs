@@ -6,11 +6,17 @@ import pickle
 with open('models/layoff_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
-st.title("📉 LayoffWatch — Tech Layoff Risk Predictor")
+
+st.markdown(
+    "<h3 style='font-size:32px;'>📉 LayoffWatch — Tech Layoff Risk Predictor</h3>",
+    unsafe_allow_html=True
+)
 
 st.write("Predict the risk of large layoffs based on company details.")
 
-# Inputs
+st.divider()
+
+# User Inputs
 industry = st.selectbox(
     "Industry",
     ['Consumer', 'Retail', 'Finance', 'Healthcare', 'Crypto', 'Transportation']
@@ -47,8 +53,7 @@ month = st.slider(
     1
 )
 
-
-#create input df
+# Create input dataframe
 input_data = pd.DataFrame({
     'Funds_Raised': [funds],
     'year': [2024],
@@ -57,18 +62,20 @@ input_data = pd.DataFrame({
     'wave_month': [0]
 })
 
-# Prediction button
+st.divider()
+
+# Prediction
 if st.button("Predict Layoff Risk"):
-    
+
     prediction = model.predict_proba(input_data)[0][1]
-    
+
     st.subheader(f"Layoff Risk Score: {prediction:.2f}")
 
     if prediction > 0.7:
         st.error("🔴 High Risk of Large Layoff")
-    
+
     elif prediction > 0.4:
         st.warning("🟡 Medium Risk")
-    
+
     else:
         st.success("🟢 Low Risk")
