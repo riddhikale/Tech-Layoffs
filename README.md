@@ -149,12 +149,6 @@ streamlit run app.py
 
 ---
 
-## Author
-
-Riddhi Kale
-
----
-
 ## License
 
 This project is for educational and portfolio purposes.
