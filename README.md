@@ -123,7 +123,7 @@ tech-layoffs-analysis/
 ### Clone Repository
 
 ```bash id="4jlwmj"
-git clone https://github.com/your-username/layoffwatch.git
+git clone https://github.com/riddhikale/layoffwatch.git
 ```
 
 ### Install Dependencies
